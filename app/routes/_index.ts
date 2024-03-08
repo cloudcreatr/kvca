@@ -24,7 +24,8 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
   return new Response(JSON.stringify(returndata), {
     headers: {
       "kv_speed": timing.toString(),
-     
+      "colo": cf.colo,
+     "countryv": cf.country || "unknown",
     }
   })
 
