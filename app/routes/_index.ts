@@ -9,7 +9,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
   const kv = context.cloudflare.env.kvcache;
   const cf = context.cloudflare.cf;
   const start = performance.now();
-  const data = await kv.get("om", { type: "json" });
+  const data = await kv.get("om", { cacheTtl: 300, type: "json"});
   const end = performance.now();
   const timing = end - start; 
  
