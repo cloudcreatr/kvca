@@ -21,6 +21,8 @@
     "@remix-run/cloudflare": "^2.7.2",
     "@remix-run/cloudflare-pages": "^2.7.2",
     "@remix-run/react": "^2.7.2",
+    "@supabase/ssr": "^0.1.0",
+    "@supabase/supabase-js": "^2.39.7",
     "drizzle-orm": "^0.30.0",
     "isbot": "^4.1.0",
     "miniflare": "^3.20231030.4",
@@ -47,7 +49,7 @@
     "typescript": "^5.1.6",
     "vite": "^5.1.0",
     "vite-tsconfig-paths": "^4.2.1",
-    "wrangler": "^3.24.0"
+    "wrangler": "^3.32.0"
   },
   "engines": {
     "node": ">=18.0.0"
