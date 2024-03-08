@@ -12,21 +12,16 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
   const data = await kv.get("om", { type: "json" });
   const end = performance.now();
   const timing = end - start; 
-  console.log("KV GET TIME: ", {
-    time: timing,
-    colo: cf.colo,
-    country: cf.country,
-
-  });
-  return {
+ 
+  const returndata = {
     data: data,
-    
+
     time: timing,
     colo: cf.colo,
     country: cf.country,
-
-  
   };
+  console.log(returndata);
+  return returndata ;
 
   }
 
