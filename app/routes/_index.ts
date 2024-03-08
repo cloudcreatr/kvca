@@ -21,7 +21,12 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
     country: cf.country,
   };
   console.log(returndata);
-  return returndata ;
+  return new Response(JSON.stringify(returndata), {
+    headers: {
+      "kv_speed": timing.toString(),
+     
+    }
+  })
 
   }
 
