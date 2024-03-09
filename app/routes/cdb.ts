@@ -71,9 +71,11 @@ export async function action({ request, context }: ActionFunctionArgs)
     }
     else if (record.type === "DELETE")
     {
-      kv.delete("articles");const data = await db.select().from(articles);
+      kv.delete("articles");
+      const data = await db.select().from(articles);
       kv.put("articles", JSON.stringify(data));
       
     }
-
+  console.log("webhook success");
+  return new Response("OK");
 }
