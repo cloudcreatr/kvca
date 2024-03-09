@@ -33,6 +33,7 @@ export async function loader({ context }: LoaderFunctionArgs) {
         headers: {
           "X-KV-Cache": "HIT",
           "X-KV-Cache-Time": `${time}ms`,
+          "content-type": "application/json"
           
         },
         });
