@@ -62,7 +62,11 @@ export async function loader({ context }: LoaderFunctionArgs) {
 
 export async function action({ request, context }: ActionFunctionArgs)
 {
-    const record = await request.json<InsertPayload>()
+  
+  const record = await request.json<InsertPayload>()
+  console.log({
+   record
+  });
     const kv = context.cloudflare.env.kvcache;
     const db = getDB(context);
     if (record.type === "INSERT" || record.type === "UPDATE")
