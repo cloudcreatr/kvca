@@ -24,19 +24,16 @@ export async function loader({ context }: LoaderFunctionArgs) {
   const kv = context.cloudflare.env.kvcache;
   const { ctx } = context.cloudflare; 
    const start = performance.now();
-  const data = await kv.get("articles", { type: "json", cacheTtl: 500 });
+  const data = await kv.get("articles", { type: "stream" });
   const end = performance.now();
   const time = end - start;
-  console.log("kv", {
-    data,
-    time,
   
-  });
     if (data) {
-      return json(data, {
+      return new Response(data, {
         headers: {
           "X-KV-Cache": "HIT",
           "X-KV-Cache-Time": `${time}ms`,
+          
         },
         });
     }
@@ -74,7 +71,9 @@ export async function action({ request, context }: ActionFunctionArgs)
     }
     else if (record.type === "DELETE")
     {
-        kv.delete("articles");
+      kv.delete("articles");const data = await db.select().from(articles);
+      kv.put("articles", JSON.stringify(data));
+      
     }
 
 }
