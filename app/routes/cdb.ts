@@ -63,9 +63,9 @@ export async function action({ request, context }: ActionFunctionArgs)
 {
     const record = await request.json<InsertPayload>()
     const kv = context.cloudflare.env.kvcache;
+    const db = getDB(context);
     if (record.type === "INSERT" || record.type === "UPDATE")
     {
-        const db = getDB(context);
         const data = await db.select().from(articles);
         kv.put("articles", JSON.stringify(data));
     }
