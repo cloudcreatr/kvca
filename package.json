@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "remix vite:build ",
-    "generate": "drizzle-kit generate:pg --config=./drizzle/drizzle.config.ts",
-    "pull": "drizzle-kit introspect:pg --config=./drizzle/drizzle.config.ts",
+    "generate": "drizzle-kit generate:pg ",
+    "pull": "drizzle-kit introspect:pg ",
     "studio": "drizzle-kit studio",
     "deploy": "npm run build && wrangler pages deploy ./build/client",
     "dev": "remix vite:dev --host",
@@ -18,12 +18,13 @@
     "build-cf-types": "wrangler types"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^0.9.0",
     "@remix-run/cloudflare": "^2.7.2",
     "@remix-run/cloudflare-pages": "^2.7.2",
     "@remix-run/react": "^2.7.2",
     "@supabase/ssr": "^0.1.0",
     "@supabase/supabase-js": "^2.39.7",
-    "drizzle-orm": "^0.30.0",
+    "drizzle-orm": "^0.30.1",
     "isbot": "^4.1.0",
     "miniflare": "^3.20231030.4",
     "pg": "^8.11.3",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240222.0",
     "@remix-run/dev": "^2.7.2",
+    "@types/pg": "^8.11.2",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
