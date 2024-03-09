@@ -22,10 +22,16 @@ interface InsertPayload {
 
 export async function loader({ context }: LoaderFunctionArgs) {
   const kv = context.cloudflare.env.kvcache;
+  const { ctx } = context.cloudflare; 
    const start = performance.now();
   const data = await kv.get("articles", { type: "json", cacheTtl: 500 });
   const end = performance.now();
   const time = end - start;
+  console.log("kv", {
+    data,
+    time,
+  
+  });
     if (data) {
       return json(data, {
         headers: {
@@ -39,6 +45,15 @@ export async function loader({ context }: LoaderFunctionArgs) {
   const data2 = await db.select().from(articles);
   const end2 = performance.now();
   const time2 = end2 - start2;
+  console.log("db", {
+    data2,
+    time2,
+  });
+
+  
+     await kv.put("articles", JSON.stringify(data2));
+  
+
   return json(data2, {
     headers: {
       "X-KV-Cache": "MISS",
